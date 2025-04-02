@@ -28,12 +28,24 @@ function Button({ children, textColor, bgColor, onClick }: ButtonProps) {
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(true);
+  const [step, setStep] = useState(1);
 
-  const step = 1;
   const message = messages[step - 1];
 
   function handleToggle() {
     setIsOpen(!isOpen);
+  }
+
+  function handleNextClick() {
+    if (step !== 3) {
+      setStep(step + 1);
+    }
+  }
+
+  function handlePreviousClick() {
+    if (step !== 1) {
+      setStep(step - 1);
+    }
   }
 
   return (
@@ -56,10 +68,18 @@ export default function App() {
           </div>
 
           <div className="buttons">
-            <Button textColor="#fff" bgColor="#7950f2" onClick={() => {}}>
+            <Button
+              textColor="#fff"
+              bgColor="#7950f2"
+              onClick={handlePreviousClick}
+            >
               <span className="step-button-icon">👈</span> Previous
             </Button>
-            <Button textColor="#fff" bgColor="#7950f2" onClick={() => {}}>
+            <Button
+              textColor="#fff"
+              bgColor="#7950f2"
+              onClick={handleNextClick}
+            >
               Next <span className="step-button-icon">👉</span>
             </Button>
           </div>
