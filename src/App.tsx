@@ -1,3 +1,9 @@
+const messages = [
+  'Learn React ⚛️',
+  'Apply for jobs 💼',
+  'Invest your new income 🤑',
+];
+
 interface ButtonProps {
   children: React.ReactNode;
   textColor: string;
@@ -19,5 +25,37 @@ function Button({ children, textColor, bgColor, onClick }: ButtonProps) {
 }
 
 export default function App() {
-  return <h1>Steps</h1>;
+  const isOpen = true;
+  const step = 1;
+  const message = messages[step - 1];
+
+  return (
+    <>
+      <button type="button" className="close-button">
+        &times;
+      </button>
+
+      <div className="steps">
+        <div className="numbers">
+          <div className={`step ${step >= 1 ? 'active' : ''}`}>1</div>
+          <div className={`step ${step >= 2 ? 'active' : ''}`}>2</div>
+          <div className={`step ${step >= 3 ? 'active' : ''}`}>3</div>
+        </div>
+
+        <div className="message">
+          <h3 className="message-title">Step {step}:</h3>
+          <p className="message-subtitle">{message}</p>
+        </div>
+
+        <div className="buttons">
+          <Button textColor="#fff" bgColor="#7950f2" onClick={() => {}}>
+            <span className="step-button-icon">👈</span> Previous
+          </Button>
+          <Button textColor="#fff" bgColor="#7950f2" onClick={() => {}}>
+            Next <span className="step-button-icon">👉</span>
+          </Button>
+        </div>
+      </div>
+    </>
+  );
 }
