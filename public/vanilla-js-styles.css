@@ -35,6 +35,10 @@ body {
   background-color: #f7f7f7;
 }
 
+.steps.closed {
+  display: none;
+}
+
 .numbers {
   display: flex;
   justify-content: space-between;
@@ -95,6 +99,9 @@ body {
 
   font-size: 14px;
   font-weight: bold;
+  color: #fff;
+
+  background-color: #7950f2;
 
   cursor: pointer;
 }

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./vanilla-js-styles.css" />
+    <title>Vanilla JS Steps</title>
+  </head>
+  <body>
+    <button type="button" class="close-button">&times;</button>
+
+    <div class="steps">
+      <div class="numbers">
+        <div class="step step-1">1</div>
+        <div class="step step-2">2</div>
+        <div class="step step-3">3</div>
+      </div>
+
+      <div class="message">
+        <h3 class="message-title"></h3>
+        <p class="message-subtitle"></p>
+      </div>
+
+      <div class="buttons">
+        <button class="button button-previous">
+          <span className="step-button-icon">👈</span> Previous
+        </button>
+        <button class="button button-next">
+          Next <span className="step-button-icon">👉</span>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const messages = [
+        'Learn React ⚛️',
+        'Apply for jobs 💼',
+        'Invest your new income 🤑',
+      ];
+
+      // Selecting DOM elements
+      const btnClose = document.querySelector('.close-button');
+      const steps = document.querySelector('.steps');
+      const step1 = document.querySelector('.step-1');
+      const step2 = document.querySelector('.step-2');
+      const step3 = document.querySelector('.step-3');
+      const messageTitle = document.querySelector('.message-title');
+      const messageSubtitle = document.querySelector('.message-subtitle');
+      const btnPrevious = document.querySelector('.button-previous');
+      const btnNext = document.querySelector('.button-next');
+
+      // "State"
+      let isOpen = true;
+      let step = 1;
+
+      // Manually updating the DOM: changing text content and adding/removing classes (imperative approach)
+      const updateUIValues = function () {
+        if (!isOpen) steps.classList.add('closed');
+        else steps.classList.remove('closed');
+
+        const message = messages[step - 1];
+        messageTitle.textContent = `Step ${step}:`;
+        messageSubtitle.textContent = message;
+
+        if (step >= 1) step1.classList.add('active');
+        else step1.classList.remove('active');
+
+        if (step >= 2) step2.classList.add('active');
+        else step2.classList.remove('active');
+
+        if (step >= 3) step3.classList.add('active');
+        else step3.classList.remove('active');
+      };
+
+      // Initial setup
+      updateUIValues();
+
+      // Manually attaching event listeners
+      btnClose.addEventListener('click', function () {
+        isOpen = !isOpen;
+        updateUIValues();
+      });
+
+      btnPrevious.addEventListener('click', function () {
+        if (step > 1) step -= 1;
+        updateUIValues();
+      });
+
+      btnNext.addEventListener('click', function () {
+        if (step < 3) step += 1;
+        updateUIValues();
+      });
+    </script>
+  </body>
+</html>
